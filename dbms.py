@@ -6,11 +6,20 @@ template_dir = os.getcwd()
 app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
+
 @app.route('/',methods=['GET','POST'])
 def index():
 	return render_template('index.html')
 
+
+@app.route('/Signupas',methods=['GET','POST'])
+
+def Signupas():
+	return render_template('Signupas.html')
+
+
 @app.route('/Signup',methods=['GET'])
+
 def Signup():
 	if 'client' in str(request):
 		message="Client"
