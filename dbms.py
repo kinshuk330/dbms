@@ -10,19 +10,23 @@ Bootstrap(app)
 def index():
 	return render_template('index.html')
 
-@app.route('/handle_data',methods=['GET'])
-def handle_data():
+@app.route('/Signup',methods=['GET'])
+def Signup():
 	if 'client' in str(request):
-		print("client selected")
-		return redirect(url_for('LoginClient'))
+		message="Client"
+	if 'judge' in str(request):
+		message="Judge"
+	if 'lawyer' in str(request):
+		message="Lawyer"
+	if 'firm' in str(request):
+		message="Firm"
+	return render_template('Signup.html',message=message)
 
-	
-	return redirect(url_for('index'))
 
-	print(request)
-@app.route('/client',methods=['GET','POST'])
-def LoginClient():
-	return ("Client")
+
+@app.route('/Login',methods=['GET','POST'])
+def Login():
+	return (str(request))
 	# elif request.form['submit'] == 'judges':
 	# 	return redirect(url_for('index'))
 	return 

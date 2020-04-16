@@ -1,11 +1,4 @@
-dbms/static/style.css
 
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
 
 @font-face {
   font-family: Poppins-Regular;
@@ -31,62 +24,62 @@ dbms/static/style.css
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
+  margin: 0px; 
+  padding: 0px; 
+  box-sizing: border-box;
 }
 
 body, html {
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+  height: 100%;
+  font-family: Poppins-Regular, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
 }
 
 a:focus {
-	outline: none !important;
+  outline: none !important;
 }
 
 a:hover {
-	text-decoration: none;
+  text-decoration: none;
   color: #fc00ff;
   border-color: #fc00ff;
 }
 
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
+  margin: 0px;
 }
 
 p {
-	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
 }
 
 ul, li {
-	margin: 0px;
-	list-style-type: none;
+  margin: 0px;
+  list-style-type: none;
 }
 
 
 /*---------------------------------------------*/
 input {
-	outline: none;
-	border: none;
+  outline: none;
+  border: none;
 }
 
 textarea {
@@ -123,24 +116,21 @@ label {
   margin: 0;
 }
 
-/*---------------------------------------------*/
 button {
-	outline: none !important;
-	border: none;
-	background: transparent;
+  outline: none !important;
+  border: none;
+  background: transparent;
 }
 
 button:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 iframe {
-	border: none !important;
+  border: none !important;
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
 .txt1 {
   font-family: Montserrat-SemiBold;
   font-size: 16px;
@@ -157,8 +147,7 @@ iframe {
 
 .bo1 {border-bottom: 1px solid #999999;}
 
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
+
 
 .limiter {
   width: 100%;
@@ -192,8 +181,7 @@ iframe {
 }
 
 
-/*==================================================================
-[ Form ]*/
+
 
 .login100-form {
   width: 100%;
@@ -209,12 +197,9 @@ iframe {
   text-align: center;
 }
 
-/*------------------------------------------------------------------
-[ Button sign in with ]*/
+
 .btn-face,
 .btn-google {
-  position: absolute;
-
   font-family: Montserrat-SemiBold;
   font-size: 18px;
   line-height: 1.2;
@@ -299,9 +284,6 @@ iframe {
 }
 
 
-/*------------------------------------------------------------------
-[ Input ]*/
-
 .wrap-input100 {
   width: 100%;
   position: relative;
@@ -311,7 +293,6 @@ iframe {
 }
 
 
-/*---------------------------------------------*/
 .input100 {
   font-family: Poppins-Regular;
   color: #333333;
@@ -324,8 +305,7 @@ iframe {
   height: 60px;
   padding: 0 20px;
 }
-/*------------------------------------------------------------------
-[ Focus Input ]*/
+
 
 .focus-input100 {
   position: absolute;
