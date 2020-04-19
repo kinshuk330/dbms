@@ -6,6 +6,12 @@ app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
 @app.route('/',methods=['GET','POST'])
+def index():
+	# if request.method=='POST':
+
+	return render_template('index.html')
+
+@app.route('/Login',methods=['GET','POST'])
 def Login():
 	if request.method=='POST':
 		username=request.form.get('username')
@@ -15,7 +21,7 @@ def Login():
 			message='wrongpass'
 			redirect(url_for('Login'))
 			return render_template('index.html',message=message)
-	return render_template('index.html')
+	return render_template('Login.html')
 
 
 @app.route('/Signupas',methods=['GET','POST'])
@@ -81,7 +87,7 @@ def Signup(message):
 
 @app.route('/Home',methods=['GET','POST'])
 def Home():
-	return ('login')
+	return render_template('Home.html')
 	# elif request.form['submit'] == 'judges':
 	# 	return redirect(url_for('index'))
 	 
