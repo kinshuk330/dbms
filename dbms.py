@@ -1,7 +1,8 @@
 from flask import Flask,render_template,redirect,url_for,request
 from flask_bootstrap import Bootstrap
 import os
-
+USERNAME=""
+di={"mode":"client","username":"kinshuk"}
 app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
@@ -14,13 +15,21 @@ def index():
 @app.route('/Login',methods=['GET','POST'])
 def Login():
 	if request.method=='POST':
+		result=request.form
+		print(result.items())
 		username=request.form.get('username')
 		password=request.form.get('password')
 		print(username+" "+str(password))
 		if username =='k' and password !='kinshuk':
 			message='wrongpass'
 			redirect(url_for('Login'))
-			return render_template('index.html',message=message)
+			return render_template('Login.html',message=message)
+		else:
+			USERNAME=username
+			di["username"]=USERNAME
+
+			return redirect(url_for('Home'))
+
 	return render_template('Login.html')
 
 
@@ -54,7 +63,7 @@ def Signup(message):
 		username=request.form.get('username')
 		password=request.form.get('password')
 		message=request.form.get('message')
-
+		result=request.form()
 		if message=='Firm':
 			firmname=request.form.get('firmname')
 			est=request.form.get('est')
@@ -87,9 +96,43 @@ def Signup(message):
 
 @app.route('/Home',methods=['GET','POST'])
 def Home():
-	return render_template('Home.html')
+	#di gets updated from sql table
+	global di 
+	return render_template('Home.html', di=di)
 	# elif request.form['submit'] == 'judges':
 	# 	return redirect(url_for('index'))
 	 
+
+
+@app.route('/FindLawyer')
+def FindLawyer():
+		global di 
+		return render_template('FindLawyer.html',di=di)
+
+@app.route('/CheckStatus')
+def CheckStatus():
+		return render_template('Checkstatus.html',di=di)
+
+
+@app.route('/HearingTime')
+def HearingTime():
+		return render_template('Hearingtime.html',di=di)
+
+
+@app.route('/Appeal')
+def Appeal():
+		return render_template('Appeal.html',di=di)
+
+@app.route('/Withdrawal')
+def Withdrawal():
+		return render_template('Withdrawal.html',di=di)
+
+
+@app.route('/Payment')
+def Payment():
+		return render_template('Payment.html',di=di)
 if __name__ == '__main__':
 	app.run(debug=True)
+
+
+	
