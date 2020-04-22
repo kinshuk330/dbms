@@ -247,8 +247,8 @@
                                                                 <td>{{cl.Name}}</td>
                                                                 <td>{{cl.DOB}}</td>                                                            
                                                                 <td>
-                                                                    <input type="submit" class="btn btn-success" value="Accept">
-                                                                    <input type="submit" class="btn btn-danger" value="Reject">
+                                                                    <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
+                                                                    <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
                                                                 </td>
                                                             </td>
                                                          </tr>

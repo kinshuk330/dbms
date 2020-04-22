@@ -106,12 +106,25 @@ def Home():
 
 
 # Lawyer Routes
+
+@app.route('/FileCase',methods=["GET","POST"])
+def FilingCase():
+	global di
+	if request.method=="POST":
+		pass 	#Read data from here
+	return render_template('FileCase.html',di=di)
+
 @app.route('/ClientRequests')
 def ClientRequests():
 		global di 
 		#lawyerrequests need to be passed
 		clientList=[{"ID":123, "Name":"helloworld123", "DOB":"11-11-1111"}]
 		newClientsList=[{"ID":12345, "Name":"helloworld321", "DOB":"11-11-2000"}]
+		
+		# print(request.args)
+		# <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
+		# <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
+		
 		return render_template('ClientRequests.html',di=di, clients=clientList, clientRequests=newClientsList)
 
 
