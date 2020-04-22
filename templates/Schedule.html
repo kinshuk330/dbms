@@ -185,26 +185,39 @@
                                              <div class="table-responsive table-sales">
                                                  <table class="table">
                                                      <tbody class="text-center">
-                                                         <tr>
-                                                            <td>Time</td>
+                                                        <tr>
                                                             <td>CNR No.</td>
-                                                            <td>Client ID</td>
-                                                            <td>Client Statement</td>
+                                                            <td>Filing No.</td>
+                                                            <td>Filing Date</td>
+                                                            <td>First Hearing</td>
+                                                            <td>Next Hearing</td>
+                                                            <td>Prev Hearing</td>
                                                             <td>Stage</td>
                                                             <td>Court No</td>
+                                                            <td>Judge ID</td>
+                                                            <td>Victim ID</td>
+                                                            <td>Victim Statement</td>
+                                                            <td>Accused ID</td>
+                                                            <td>Accused Statement</td>
                                                             <td>Acts</td>
                                                          </tr>
-                                                         {% for task in schedule %}
+                                                         {% for case in schedule %}
                                                          <tr>
-                                                            <td>{{task.Time}}</td>
-                                                            <td>{{task.CNRno}}</td>
-                                                            <td>{{task.ClientID}}</td>
-                                                            <td>{{task.ClientStmnt}}</td>
-                                                            <td>{{task.Stage}}</td>
-                                                            <td>{{task.CourtNo}}</td>
-                                                            <td>{{task.Acts}}</td>
+                                                            <td>{{case.CNRno}}</td>
+                                                            <td>{{case.FilingNo}}</td>
+                                                            <td>{{case.FilingDate}}</td>
+                                                            <td>{{case.FirstHearing}}</td>
+                                                            <td>{{case.NextHearing}}</td>
+                                                            <td>{{case.PrevHearing}}</td>
+                                                            <td>{{case.Stage}}</td>
+                                                            <td>{{case.CourtNo}}</td>
+                                                            <td>{{case.JudgeID}}</td>
+                                                            <td>{{case.VictimID}}</td>
+                                                            <td>{{case.VictimStmnt}}</td>
+                                                            <td>{{case.AccusedID}}</td>
+                                                            <td>{{case.AccusedStmnt}}</td>
+                                                            <td>{{case.Acts}}</td>
                                                          </tr>
-                                                         {%endfor%}
                                                      </tbody>
                                                  </table>
                                              </div>
