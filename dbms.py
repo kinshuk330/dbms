@@ -1,5 +1,6 @@
 from flask import Flask,render_template,redirect,url_for,request
 from flask_bootstrap import Bootstrap
+import Home
 import os
 USERNAME=""
 di={"mode":"client","username":"kinshuk"}
@@ -107,11 +108,20 @@ def Home():
 @app.route('/FindLawyer')
 def FindLawyer():
 		global di 
+		#lawyerrequests need to be passed
 		return render_template('FindLawyer.html',di=di)
+
+
+@app.route('/FindFirm')
+def FindFirm():
+		global di 
+		#lawyerrequests need to be passed
+		return render_template('FindFirm.html',di=di)
 
 @app.route('/CheckStatus')
 def CheckStatus():
-		return render_template('Checkstatus.html',di=di)
+	#Cases to be added as argument
+	return render_template('Checkstatus.html',di=di)
 
 
 @app.route('/HearingTime')
