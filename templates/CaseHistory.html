@@ -47,8 +47,7 @@
 </head>
 
 <body>
-        {%if 'client'==di['mode'] %}
-
+	{%if 'lawyer'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -70,7 +69,6 @@
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" class="collapsed">
                             {{di["username"]}}
-                           
                         </a>
                         <div class="collapse" id="collapseExample">
                             <ul class="nav">
@@ -98,6 +96,7 @@
                     <a href="#">Settings</a>
                                 </li>
                 </ul>
+                
             </div>
         </div>
         <div class="main-panel">
@@ -120,39 +119,29 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="{{url_for('FindLawyer')}}" >
-                                  Find a Lawyer
-                                                                   </a>
-                            </li>
                             <li >
-                                <a  href="{{url_for('FindFirm')}}" >
-                                  Firm Requests
+                                <a  href="{{url_for('ClientRequests')}}" >
+                                  Client Requests
+                                                                   </a>
+                            </li>
+                             <li >
+                                <a  href="{{url_for('ActivePending')}}" >
+                                  Active/Pending Cases
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('CheckStatus')}}" >
-                                  Check Status
+                                <a href="{{url_for('Schedule')}}" >
+                                  Schedule For The Day
                                                                    </a>
                             </li>                            
                             <li>
-                                <a href="{{url_for('HearingTime')}}" >
-                                  Hearing Time
-                                                                   </a>
-                            </li>                            
-                            <li>
-                                <a href="{{url_for('Appeal')}}" >
-                                  Appeal to Higher Court
-                                                                   </a>
-                            </li>                           
-                             <li>
-                                <a href="{{url_for('Withdrawal')}}" >
-                                  Withdrawal
+                                <a href="{{url_for('CaseHistory')}}" >
+                                  Check Case History
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('Payment')}}" >
-                                  Make Payement
+                                <a href="{{url_for('RequestPayment')}}" >
+                                  Request Payement
                                                                    </a>
                             </li>
                             
@@ -175,70 +164,107 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="green">
+                                    <i class="material-icons">language</i>
+                                </div>
                                 <div class="card-content">
-                                    <h4 class="card-title">
-                                    {%if cases is defined%}
-                                    Cases currently involved in
-                                    {%else%}
-                                    No case currently involved in
-                                    {%endif%}
-                                	</h4>
+                                    <h4 class="card-title">Global Pending Cases by Top Countries (in Lakhs)</h4>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="table-responsive table-sales">
                                                 <table class="table">
                                                     <tbody>
-                                                    	{% for case in cases %}
-	                                                        <tr>
-	                                                        	<td>
-	                                                        		{{case.CNRno}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.FilingNo}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.FilingDate}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.FirstHearing}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.NextHearing}}
-	                                                        	</td>
-																<td>
-	                                                        		{{case.PrevHearing}}
-	                                                        	</td>
-																<td>
-	                                                        		{{case.Stage}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.CourtNo}}
-	                                                        	</td>
-																<td>
-	                                                        		{{case.JudgeID}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.VictimID}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.VictimStmnt}}
-	                                                        	</td>
-																<td>
-	                                                        		{{case.AccusedID}}
-	                                                        	</td>
-	                                                        	<td>
-	                                                        		{{case.AccusedStmnt}}
-	                                                        	</td>
-																<td>
-	                                                        		{{case.Acts}}
-	                                                        	</td>
-	                                                        </tr>
-	                                                    {%endfor%}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="/static/static2/assets/img/flags/US.png">
+                                                                </div>
+                                                            </td>
+                                                            <td>USA</td>
+                                                            <td class="text-right">
+                                                                2.920
+                                                            </td>
+                                                            <td class="text-right">
+                                                                53.23%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="/static/static2/assets/img/flags/DE.png">
+                                                                </div>
+                                                            </td>
+                                                            <td>Germany</td>
+                                                            <td class="text-right">
+                                                                1.300
+                                                            </td>
+                                                            <td class="text-right">
+                                                                20.43%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="/static/static2/assets/img/flags/AU.png">
+                                                                </div>
+                                                            </td>
+                                                            <td>Australia</td>
+                                                            <td class="text-right">
+                                                                760
+                                                            </td>
+                                                            <td class="text-right">
+                                                                10.35%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="/static/static2/assets/img/flags/GB.png">
+                                                                </div>
+                                                            </td>
+                                                            <td>United Kingdom</td>
+                                                            <td class="text-right">
+                                                                690
+                                                            </td>
+                                                            <td class="text-right">
+                                                                7.87%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="/static/static2/assets/img/flags/RO.png">
+                                                                </div>
+                                                            </td>
+                                                            <td>Romania</td>
+                                                            <td class="text-right">
+                                                                600
+                                                            </td>
+                                                            <td class="text-right">
+                                                                5.94%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img src="/static/static2/assets/img/flags/BR.png">
+                                                                </div>
+                                                            </td>
+                                                            <td>Brasil</td>
+                                                            <td class="text-right">
+                                                                550
+                                                            </td>
+                                                            <td class="text-right">
+                                                                4.34%
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-md-6 col-md-offset-1">
+                                            <div id="worldMap" class="map"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 import Home
 import os
 USERNAME=""
-di={"mode":"client","username":"kinshuk"}
+di={"mode":"lawyer","username":"dushyant"}
 app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
@@ -21,7 +21,7 @@ def Login():
 		username=request.form.get('username')
 		password=request.form.get('password')
 		print(username+" "+str(password))
-		if username =='k' and password !='kinshuk':
+		if username =='dush' and password !='panch':
 			message='wrongpass'
 			redirect(url_for('Login'))
 			return render_template('Login.html',message=message)
@@ -105,42 +105,35 @@ def Home():
 	 
 
 
-@app.route('/FindLawyer')
-def FindLawyer():
+# Lawyer Routes
+@app.route('/ClientRequests')
+def ClientRequests():
 		global di 
 		#lawyerrequests need to be passed
-		return render_template('FindLawyer.html',di=di)
+		return render_template('ClientRequests.html',di=di)
 
 
-@app.route('/FindFirm')
-def FindFirm():
+@app.route('/ActivePending')
+def ActivePending():
 		global di 
 		#lawyerrequests need to be passed
-		return render_template('FindFirm.html',di=di)
+		return render_template('ActivePending.html',di=di)
 
-@app.route('/CheckStatus')
-def CheckStatus():
+@app.route('/Schedule')
+def Schedule():
 	#Cases to be added as argument
-	return render_template('Checkstatus.html',di=di)
+	return render_template('Schedule.html',di=di)
 
 
-@app.route('/HearingTime')
-def HearingTime():
-		return render_template('Hearingtime.html',di=di)
+@app.route('/CaseHistory')
+def CaseHistory():
+		return render_template('CaseHistory.html',di=di)
 
 
-@app.route('/Appeal')
-def Appeal():
-		return render_template('Appeal.html',di=di)
+@app.route('/RequestPayment')
+def RequestPayment():
+		return render_template('RequestPayment.html',di=di)
 
-@app.route('/Withdrawal')
-def Withdrawal():
-		return render_template('Withdrawal.html',di=di)
-
-
-@app.route('/Payment')
-def Payment():
-		return render_template('Payment.html',di=di)
 if __name__ == '__main__':
 	app.run(debug=True)
 

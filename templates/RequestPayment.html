@@ -47,8 +47,7 @@
 </head>
 
 <body>
-        {%if 'client'==di['mode'] %}
-
+	{%if 'lawyer'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -87,7 +86,7 @@
                     </div>
                 </div>
                 <ul class="nav">
-                    <li>
+                	<li>
                         <a href="#">My Profile</a>
                     </li>
                     <li>
@@ -121,38 +120,28 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('FindLawyer')}}" >
-                                  Lawyer Requests
+                                <a  href="{{url_for('ClientRequests')}}" >
+                                  Client Requests
                                                                    </a>
                             </li>
                              <li >
-                                <a  href="{{url_for('FindFirm')}}" >
-                                  Firm Requests
+                                <a  href="{{url_for('ActivePending')}}" >
+                                  Active/Pending Cases
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('CheckStatus')}}" >
-                                  Check Status
+                                <a href="{{url_for('Schedule')}}" >
+                                  Schedule For The Day
                                                                    </a>
                             </li>                            
                             <li>
-                                <a href="{{url_for('HearingTime')}}" >
-                                  Hearing Time
-                                                                   </a>
-                            </li>                            
-                            <li>
-                                <a href="{{url_for('Appeal')}}" >
-                                  Appeal to Higher Court
-                                                                   </a>
-                            </li>                           
-                             <li>
-                                <a href="{{url_for('Withdrawal')}}" >
-                                  Withdrawal
+                                <a href="{{url_for('CaseHistory')}}" >
+                                  Check Case History
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('Payment')}}" >
-                                  Make Payement
+                                <a href="{{url_for('RequestPayment')}}" >
+                                  Request Payement
                                                                    </a>
                             </li>
                             
