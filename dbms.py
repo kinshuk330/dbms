@@ -126,7 +126,8 @@ def ActivePending():
 @app.route('/Schedule')
 def Schedule():
 	#Cases to be added as argument
-	return render_template('Schedule.html',di=di)
+	schedule=[] # Kindly Provide Time Sorted Data
+	return render_template('Schedule.html',di=di,schedule=schedule)
 
 
 @app.route('/CaseHistory')
