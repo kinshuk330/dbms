@@ -124,6 +124,11 @@
                                   Client Requests
                                                                    </a>
                             </li>
+                            <li >
+                                <a  href="{{url_for('FileCase')}}" >
+                                  File A Case
+                                                                   </a>
+                            </li>
                              <li >
                                 <a  href="{{url_for('ActivePending')}}" >
                                   Active/Pending Cases
@@ -218,6 +223,7 @@
                                                             <td>{{case.AccusedStmnt}}</td>
                                                             <td>{{case.Acts}}</td>
                                                          </tr>
+                                                         {% endfor %}
                                                      </tbody>
                                                  </table>
                                              </div>

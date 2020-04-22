@@ -108,10 +108,23 @@ def Home():
 # Lawyer Routes
 
 @app.route('/FileCase',methods=["GET","POST"])
-def FilingCase():
+def FileCase():
 	global di
 	if request.method=="POST":
-		pass 	#Read data from here
+		pass 	#Read data here using request.form.get('name of entry')
+	"""	
+	Generate filing no. and filing date automatically
+		VictimID
+		Victim_LawyerID
+		AccusedID
+		Accused_LawyerID
+		Civil/Criminal (radio buttons)
+		FIRno
+		Doc_Uploaded_Victim
+		Doc_Uploaded_Accused
+		is_Verified
+	"""
+
 	return render_template('FileCase.html',di=di)
 
 @app.route('/ClientRequests')
@@ -124,7 +137,7 @@ def ClientRequests():
 		# print(request.args)
 		# <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
 		# <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
-		
+
 		return render_template('ClientRequests.html',di=di, clients=clientList, clientRequests=newClientsList)
 
 
