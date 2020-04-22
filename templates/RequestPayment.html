@@ -158,113 +158,71 @@
             
             <div class="content">
                 <div class="container-fluid">
-                 {%if clients is not defined %}
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 <div class="card-content">
-                                     <h4 class="card-title">No Current Clients </h4>
-                                 </div>
-                             </div>
-                         </div>
-                 </div>
-                 {%else%}
- 
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 
-                                 <div class="card-content">
-                                     <h4 class="card-title">Current Clients</h4>
-                                     <div class="row">
-                                         <div class="col-md-10">
-                                             <div class="table-responsive table-sales">
-                                                 <table class="table">
-                                                     <tbody class="text-center">
-                                                         <tr>
-                                                             <td>Client ID</td>
-                                                             <td>Name</td>
-                                                             <td>DOB</td>
-                                                         </tr>
-                                                         {% for cl in clients %}
-                                                         <tr>
-                                                             <td>{{cl.ID}}</td>
-                                                             <td>{{cl.Name}}</td>
-                                                             <td>{{cl.DOB}}</td>
-                                                         </tr>
-                                                         {%endfor%}
-                                                     </tbody>
-                                                 </table>
-                                             </div>
-                                         </div>
- 
-                                         <div class="col-md-6 col-md-offset-1">
-                                             <!-- <div id="worldMap" class="map"></div> -->
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     {%endif%}
-                      {%if clientRequests is not defined %}
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 <div class="card-content">
-                                     <h4 class="card-title">No New Client Requests</h4>
-                                 </div>
-                             </div>
-                         </div>
-                 </div>
-                 {%else%}
- 
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 
-                                 <div class="card-content">
-                                     <h4 class="card-title">New Client Requests</h4>
-                                     <div class="row">
-                                         <div class="col-md-10">
-                                             <div class="table-responsive table-sales">
-                                                 <table class="table">
-                                                     <tbody class="text-center">
-                                                            <tr>
-                                                                <td>Client ID</td>
-                                                                <td>Name</td>
-                                                                <td>DOB</td>
-                                                                <td>Accept/Reject</td>
-                                                            </tr>
-                                                            {% for cl in clientRequests %}
-                                                            <tr>
-                                                                <td>{{cl.ID}}</td>
-                                                                <td>{{cl.Name}}</td>
-                                                                <td>{{cl.DOB}}</td>                                                            
-                                                                <td>
-                                                                    <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
-                                                                    <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
-                                                                </td>
-                                                            </td>
-                                                         </tr>
-                                                         {%endfor%}
- 
-                                                     </tbody>
-                                                 </table>
-                                             </div>
-                                         </div>
- 
-                                         <div class="col-md-6 col-md-offset-1">
-                                             <!-- <div id="worldMap" class="map"></div> -->
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     {%endif%}
-                     
-                
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="card-title">File A Case: Fill In The Details</h4>
+                                    <div class="row">
+                                        <form id="TypeValidation" class="form-horizontal" action="/RequestPayment" method="POST">
+                                
+                                            
+                                            
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter Your Lawyer ID" name="LawyerID">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter Client ID" name="ClientID">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter CNR Number" name="CNRno">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter Side" name="Side">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">  
+                                                        <input class="form-control" type="text" placeholder="Enter Fee" name="Fee">                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="col-sm-8">
+                                                <div class="row">
+                                                    <button type="submit" class="btn btn-rose btn-fill">Send Request</button>
+                                                </div>
+                                            </div>
+
+                                            
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 
 
             <footer class="footer">

@@ -165,9 +165,11 @@ def Schedule():
 	return render_template('Schedule.html',di=di,schedule=schedule)
 
 
-@app.route('/RequestPayment')
+@app.route('/RequestPayment', methods=["POST","GET"])
 def RequestPayment():
-		return render_template('RequestPayment.html',di=di)
+	if request.method == "POST":
+		pass	#Process the payment entry to add to the table
+	return render_template('RequestPayment.html',di=di)
 
 if __name__ == '__main__':
 	app.run(debug=True)
