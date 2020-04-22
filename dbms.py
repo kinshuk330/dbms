@@ -127,6 +127,15 @@ def FileCase():
 
 	return render_template('FileCase.html',di=di)
 
+
+@app.route('/CaseHistory',methods=["GET","POST"])
+def CaseHistory():
+	hrs="" # [{"Date":"12345", "CNRno":'54321', "Prev_Date":'24141',"Purpose":'Just for fun'}]
+	if request.method=="POST":
+		cnr = request.form.get('CNRno')
+		# process find hearings using cnrNn and put into hrs.
+	return render_template('CaseHistory.html',di=di,hearings=hrs)
+
 @app.route('/ClientRequests')
 def ClientRequests():
 		global di 
@@ -154,11 +163,6 @@ def Schedule():
 	#Cases to be added as argument
 	schedule=[] # all cols of active cases
 	return render_template('Schedule.html',di=di,schedule=schedule)
-
-
-@app.route('/CaseHistory')
-def CaseHistory():
-		return render_template('CaseHistory.html',di=di)
 
 
 @app.route('/RequestPayment')
