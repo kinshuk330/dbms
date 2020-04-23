@@ -47,7 +47,7 @@
 </head>
 
 <body>
-	{%if 'lawyer'==di['mode'] %}
+	{%if 'law firm'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -120,7 +120,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('ClientRequests')}}" >
+                                <a  href="{{url_for('ClientRequestsLawFirm')}}" >
                                   Client Requests
                                                                    </a>
                             </li>
@@ -224,20 +224,30 @@
                                                                 <td>Client ID</td>
                                                                 <td>Name</td>
                                                                 <td>DOB</td>
-                                                                <td>Accept/Reject</td>
+                                                                <td>Accept</td>
+                                                                <td>Reject</td>
                                                             </tr>
                                                             {% for cl in clientRequests %}
                                                             <tr>
                                                                 <td>{{cl.ID}}</td>
                                                                 <td>{{cl.Name}}</td>
-                                                                <td>{{cl.DOB}}</td>                                                            
+                                                                <td>{{cl.DOB}}</td>   
                                                                 <td>
-                                                                    <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
-                                                                    <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
+                                                                    <form action="/ClientRequestsLawFirm/accept" method="POST">
+                                                                        <input type="hidden" value="{{cl.ID}}" name="clientID">
+                                                                        <input class="form-control" type="text" name="lawyerID" placeholder="Enter Lawyer ID To Assign In Case Of Accept">
+                                                                        <input type="submit" class="btn btn-success" value="Accept">
+                                                                    </form>                                                        
                                                                 </td>
-                                                            </td>
-                                                         </tr>
-                                                         {%endfor%}
+                                                                <td>
+                                                                    <form action="/ClientRequestsLawFirm/reject" method="POST">
+                                                                        <input type="hidden" value="{{cl.ID}}" name="clientID">
+                                                                    
+                                                                        <input type="submit" class="btn btn-danger" value="Reject">
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                            {%endfor%}
  
                                                      </tbody>
                                                  </table>

@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 import Home
 import os
 USERNAME=""
-di={"mode":"lawyer","username":"dushyant"}
+di={"mode":"law firm","username":"dushyant"}
 app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
@@ -107,23 +107,38 @@ def Home():
 
 # Law Firm Routes
 
-@app.route('/ClientRequests')
-def ClientRequests():
-		global di 
-		clientList=[{"ID":123, "Name":"helloworld123", "DOB":"11-11-1111"}]
-		newClientsList=[{"ID":12345, "Name":"helloworld321", "DOB":"11-11-2000"}]
-		
-		# print(request.args)
-		# <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
-		# <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
+@app.route('/ClientRequestsLawFirm')
+def ClientRequestsLawFirm():
+	global di 
+	existingClients=[{"ID":123, "Name":"helloworld123", "DOB":"11-11-1111"}]
+	newClients=[{"ID":12345, "Name":"helloworld321", "DOB":"11-11-2000"}]
+	
+	# print(request.args)
+	# <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
+	# <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
 
-		return render_template('ClientRequests.html',di=di, clients=clientList, clientRequests=newClientsList)
+	return render_template('ClientRequestsLawFirm.html',di=di, clients=existingClients, clientRequests=newClients)
+
+@app.route('/ClientRequestsLawFirm/accept', methods=["POST","GET"])
+def ClientRequestsLawFirm_accept():
+	if request.method=="POST":
+		print(request.form.get('clientID'),request.form.get('lawyerID'))
+	return ClientRequestsLawFirm()
+
+@app.route('/ClientRequestsLawFirm/reject', methods=["POST","GET"])
+def ClientRequestsLawFirm_reject():
+	if request.method=="POST":
+		print(request.form.get('clientID'))
+	return ClientRequestsLawFirm()
+
+
+
 
 @app.route('/LawyerPerf')
 def LawyerPerf():
-		global di 
-		lawyerPerf=[]
-		return render_template('LawyerPerf.html',di=di,lawyerPerf=lawyerPerf)
+	global di 
+	lawyerPerf=[]
+	return render_template('LawyerPerf.html',di=di,lawyerPerf=lawyerPerf)
 
 @app.route('/FirmEarn')
 def FirmEarn():

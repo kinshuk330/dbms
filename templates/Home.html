@@ -47,7 +47,7 @@
 </head>
 
 <body>
-	{%if 'lawyer'==di['mode'] %}
+	{%if 'law firm'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -120,7 +120,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('ClientRequests')}}" >
+                                <a  href="{{url_for('ClientRequestsLawFirm')}}" >
                                   Client Requests
                                                                    </a>
                             </li>
