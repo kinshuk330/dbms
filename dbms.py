@@ -140,10 +140,14 @@ def LawyerPerf():
 	lawyerPerf=[{'ID':123,'Name':'hello','Wins':10,'Loses':2}]
 	return render_template('LawyerPerf.html',di=di,lawyerPerf=lawyerPerf)
 
-@app.route('/FirmEarn')
+@app.route('/FirmEarn', methods=["POST","GET"])
 def FirmEarn():
-	earning=[]
-	return render_template('FirmEarn.html',di=di,earnings=earning)
+	client_wise=[]
+	lawyer_wise=[]
+	if request.method=="POST":
+		request.form.get('StartDate')
+		# process queries
+	return render_template('FirmEarn.html',di=di,client_wise=client_wise,lawyer_wise=lawyer_wise)
 
 
 @app.route('/WinLose')

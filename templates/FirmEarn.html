@@ -148,12 +148,44 @@
             
             <div class="content">
                 <div class="container-fluid">
-                 {%if clients is not defined %}
+                
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="card-title">Get Earnings Data Grouped By Client/Lawyer ID</h4>
+                                    <div class="row">
+                                        <form id="TypeValidation" class="form-horizontal" action="/FirmEarn" method="POST">
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="date" placeholder="Enter Start Date" name="StartDate">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row">
+                                                    <button type="submit" class="btn btn-rose btn-fill">Submit</button>
+                                                </div>
+                                            </div>                                            
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                 {%if client_wise==[] %}
                  <div class="row">
                          <div class="col-md-12">
                              <div class="card">
                                  <div class="card-content">
-                                     <h4 class="card-title">No Current Clients </h4>
+                                     <h4 class="card-title">Enter Start Date To Continue</h4>
                                  </div>
                              </div>
                          </div>
@@ -165,7 +197,7 @@
                              <div class="card">
                                  
                                  <div class="card-content">
-                                     <h4 class="card-title">Current Clients</h4>
+                                     <h4 class="card-title">Client Wise Data</h4>
                                      <div class="row">
                                          <div class="col-md-10">
                                              <div class="table-responsive table-sales">
@@ -174,13 +206,13 @@
                                                          <tr>
                                                              <td>Client ID</td>
                                                              <td>Name</td>
-                                                             <td>DOB</td>
+                                                             <td>Earnings</td>
                                                          </tr>
-                                                         {% for cl in clients %}
+                                                         {% for cl in client_wise %}
                                                          <tr>
                                                              <td>{{cl.ID}}</td>
                                                              <td>{{cl.Name}}</td>
-                                                             <td>{{cl.DOB}}</td>
+                                                             <td>{{cl.Earnings}}</td>
                                                          </tr>
                                                          {%endfor%}
                                                      </tbody>
@@ -197,12 +229,13 @@
                          </div>
                      </div>
                      {%endif%}
-                      {%if clientRequests is not defined %}
+
+                {%if lawyer_wise == [] %}
                  <div class="row">
                          <div class="col-md-12">
                              <div class="card">
                                  <div class="card-content">
-                                     <h4 class="card-title">No New Client Requests</h4>
+                                     <h4 class="card-title">Enter Start Date To Continue</h4>
                                  </div>
                              </div>
                          </div>
@@ -214,38 +247,22 @@
                              <div class="card">
                                  
                                  <div class="card-content">
-                                     <h4 class="card-title">New Client Requests</h4>
+                                     <h4 class="card-title">Lawyer Wise Data</h4>
                                      <div class="row">
                                          <div class="col-md-10">
                                              <div class="table-responsive table-sales">
                                                  <table class="table">
                                                      <tbody class="text-center">
                                                             <tr>
-                                                                <td>Client ID</td>
+                                                                <td>Lawyer ID</td>
                                                                 <td>Name</td>
-                                                                <td>DOB</td>
-                                                                <td>Accept</td>
-                                                                <td>Reject</td>
+                                                                <td>Earnings</td>
                                                             </tr>
-                                                            {% for cl in clientRequests %}
+                                                            {% for cl in lawyer_wise %}
                                                             <tr>
                                                                 <td>{{cl.ID}}</td>
                                                                 <td>{{cl.Name}}</td>
-                                                                <td>{{cl.DOB}}</td>   
-                                                                <td>
-                                                                    <form action="/ClientRequestsLawFirm/accept" method="POST">
-                                                                        <input type="hidden" value="{{cl.ID}}" name="clientID">
-                                                                        <input class="form-control" type="text" name="lawyerID" placeholder="Enter Lawyer ID To Assign In Case Of Accept">
-                                                                        <input type="submit" class="btn btn-success" value="Accept">
-                                                                    </form>                                                        
-                                                                </td>
-                                                                <td>
-                                                                    <form action="/ClientRequestsLawFirm/reject" method="POST">
-                                                                        <input type="hidden" value="{{cl.ID}}" name="clientID">
-                                                                    
-                                                                        <input type="submit" class="btn btn-danger" value="Reject">
-                                                                    </form>
-                                                                </td>
+                                                                <td>{{cl.Earnings}}</td>
                                                             </tr>
                                                             {%endfor%}
  
