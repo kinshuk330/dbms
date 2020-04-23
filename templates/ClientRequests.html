@@ -159,7 +159,7 @@
             
             <div class="content">
                 <div class="container-fluid">
-                 {%if clients is not defined %}
+                 {%if clients==[] %}
                  <div class="row">
                          <div class="col-md-12">
                              <div class="card">
@@ -208,7 +208,7 @@
                          </div>
                      </div>
                      {%endif%}
-                      {%if clientRequests is not defined %}
+                      {%if clientRequests == [] %}
                  <div class="row">
                          <div class="col-md-12">
                              <div class="card">
