@@ -145,7 +145,7 @@ def FirmEarn():
 	client_wise=[]
 	lawyer_wise=[]
 	if request.method=="POST":
-		request.form.get('StartDate')
+		print(request.form.get('StartDate'))
 		# process queries
 	return render_template('FirmEarn.html',di=di,client_wise=client_wise,lawyer_wise=lawyer_wise)
 
