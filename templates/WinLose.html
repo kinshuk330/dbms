@@ -148,12 +148,12 @@
             
             <div class="content">
                 <div class="container-fluid">
-                 {%if clients is not defined %}
+                 {%if wins_loses==[] %}
                  <div class="row">
                          <div class="col-md-12">
                              <div class="card">
                                  <div class="card-content">
-                                     <h4 class="card-title">No Current Clients </h4>
+                                     <h4 class="card-title">No Data Available</h4>
                                  </div>
                              </div>
                          </div>
@@ -165,22 +165,24 @@
                              <div class="card">
                                  
                                  <div class="card-content">
-                                     <h4 class="card-title">Current Clients</h4>
+                                     <h4 class="card-title">Total Wins/Loses For Different Firms</h4>
                                      <div class="row">
                                          <div class="col-md-10">
                                              <div class="table-responsive table-sales">
                                                  <table class="table">
                                                      <tbody class="text-center">
                                                          <tr>
-                                                             <td>Client ID</td>
-                                                             <td>Name</td>
-                                                             <td>DOB</td>
+                                                            <td>Firm ID</td>
+                                                            <td>Name</td>
+                                                            <td>Wins</td>
+                                                            <td>Loses</td>
                                                          </tr>
-                                                         {% for cl in clients %}
+                                                         {% for lp in wins_loses %}
                                                          <tr>
-                                                             <td>{{cl.ID}}</td>
-                                                             <td>{{cl.Name}}</td>
-                                                             <td>{{cl.DOB}}</td>
+                                                            <td>{{lp.ID}}</td>
+                                                            <td>{{lp.Name}}</td>
+                                                            <td>{{lp.Wins}}</td>
+                                                            <td>{{lp.Loses}}</td>
                                                          </tr>
                                                          {%endfor%}
                                                      </tbody>
@@ -197,74 +199,7 @@
                          </div>
                      </div>
                      {%endif%}
-                      {%if clientRequests is not defined %}
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 <div class="card-content">
-                                     <h4 class="card-title">No New Client Requests</h4>
-                                 </div>
-                             </div>
-                         </div>
-                 </div>
-                 {%else%}
- 
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 
-                                 <div class="card-content">
-                                     <h4 class="card-title">New Client Requests</h4>
-                                     <div class="row">
-                                         <div class="col-md-10">
-                                             <div class="table-responsive table-sales">
-                                                 <table class="table">
-                                                     <tbody class="text-center">
-                                                            <tr>
-                                                                <td>Client ID</td>
-                                                                <td>Name</td>
-                                                                <td>DOB</td>
-                                                                <td>Accept</td>
-                                                                <td>Reject</td>
-                                                            </tr>
-                                                            {% for cl in clientRequests %}
-                                                            <tr>
-                                                                <td>{{cl.ID}}</td>
-                                                                <td>{{cl.Name}}</td>
-                                                                <td>{{cl.DOB}}</td>   
-                                                                <td>
-                                                                    <form action="/ClientRequestsLawFirm/accept" method="POST">
-                                                                        <input type="hidden" value="{{cl.ID}}" name="clientID">
-                                                                        <input class="form-control" type="text" name="lawyerID" placeholder="Enter Lawyer ID To Assign In Case Of Accept">
-                                                                        <input type="submit" class="btn btn-success" value="Accept">
-                                                                    </form>                                                        
-                                                                </td>
-                                                                <td>
-                                                                    <form action="/ClientRequestsLawFirm/reject" method="POST">
-                                                                        <input type="hidden" value="{{cl.ID}}" name="clientID">
-                                                                    
-                                                                        <input type="submit" class="btn btn-danger" value="Reject">
-                                                                    </form>
-                                                                </td>
-                                                            </tr>
-                                                            {%endfor%}
- 
-                                                     </tbody>
-                                                 </table>
-                                             </div>
-                                         </div>
- 
-                                         <div class="col-md-6 col-md-offset-1">
-                                             <!-- <div id="worldMap" class="map"></div> -->
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     {%endif%}
                      
-                
                 
 
             <footer class="footer">

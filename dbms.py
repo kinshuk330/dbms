@@ -148,7 +148,7 @@ def FirmEarn():
 
 @app.route('/WinLose')
 def WinLose():
-	wins_loses=[]
+	wins_loses=[{'ID':123,'Name':'hello','Wins':10,'Loses':2}]
 	return render_template('WinLose.html',di=di, wins_loses=wins_loses)
 
 if __name__ == '__main__':
