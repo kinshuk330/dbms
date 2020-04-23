@@ -137,7 +137,7 @@ def ClientRequestsLawFirm_reject():
 @app.route('/LawyerPerf')
 def LawyerPerf():
 	global di 
-	lawyerPerf=[]
+	lawyerPerf=[{'ID':123,'Name':'hello','Wins':10,'Loses':2}]
 	return render_template('LawyerPerf.html',di=di,lawyerPerf=lawyerPerf)
 
 @app.route('/FirmEarn')
