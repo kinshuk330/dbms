@@ -140,9 +140,9 @@
                                   Hearing Time
                                                                    </a>
                             </li>                            
-                            <li>
-                                <a href="{{url_for('Appeal')}}" >
-                                  Appeal to Higher Court
+                             <li>
+                                <a href="{{url_for('Documents')}}" >
+                                  Upload Documents
                                                                    </a>
                             </li>                           
                              <li>
@@ -157,7 +157,7 @@
                             </li>
                             
                         </ul>
-                        <form class="navbar-form navbar-right" role="search">
+                       <!--  <form class="navbar-form navbar-right" role="search">
                             <div class="form-group form-search is-empty">
                                 <input type="text" class="form-control" placeholder="Search">
                                 <span class="material-input"></span>
@@ -166,7 +166,7 @@
                                 <i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                             </button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </nav>
@@ -175,11 +175,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header card-header-icon" data-background-color="green">
-                                    <i class="material-icons">language</i>
-                                </div>
                                 <div class="card-content">
-                                    <h4 class="card-title">Global Pending Cases by Top Countries (in Lakhs)</h4>
+                                    <h4 class="card-title">
+                                    {%if Acases is defined%}
+                                    Next Hearing Time for cases 
+                                    {%else%}
+                                    Currently no Hearing scheduled
+                                    {%endif%}
+                                    </h4>
+                                   {%if Acases is defined%}
+
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="table-responsive table-sales">
@@ -187,180 +192,58 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/US.png">
-                                                                </div>
+                                                                CNR number
                                                             </td>
-                                                            <td>USA</td>
-                                                            <td class="text-right">
-                                                                2.920
-                                                            </td>
-                                                            <td class="text-right">
-                                                                53.23%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/DE.png">
-                                                                </div>
+                                                                Filing Date
                                                             </td>
-                                                            <td>Germany</td>
-                                                            <td class="text-right">
-                                                                1.300
-                                                            </td>
-                                                            <td class="text-right">
-                                                                20.43%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/AU.png">
-                                                                </div>
+                                                                Next Hearing Date
                                                             </td>
-                                                            <td>Australia</td>
-                                                            <td class="text-right">
-                                                                760
-                                                            </td>
-                                                            <td class="text-right">
-                                                                10.35%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/GB.png">
-                                                                </div>
+                                                                Prev Hearing Date
                                                             </td>
-                                                            <td>United Kingdom</td>
-                                                            <td class="text-right">
-                                                                690
-                                                            </td>
-                                                            <td class="text-right">
-                                                                7.87%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/RO.png">
-                                                                </div>
+                                                                Side
                                                             </td>
-                                                            <td>Romania</td>
-                                                            <td class="text-right">
-                                                                600
-                                                            </td>
-                                                            <td class="text-right">
-                                                                5.94%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/BR.png">
-                                                                </div>
-                                                            </td>
-                                                            <td>Brasil</td>
-                                                            <td class="text-right">
-                                                                550
-                                                            </td>
-                                                            <td class="text-right">
-                                                                4.34%
+                                                                Acts
                                                             </td>
                                                         </tr>
+                                                        {% for case in Acases %}
+                                                            <tr>
+                                                                <td>
+                                                                    {{case.CNRno}}
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    {{case.FilingDate}}
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    {{case.NextHearing}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.PrevHearing}}
+                                                                </td>
+                                                                {%if di.ID==case.VictimID%}
+                                                                Victim
+                                                                {%else%}
+                                                                Accused
+                                                                {%endif%}
+                                                                <td>
+                                                                    {{case.Acts}}
+                                                                </td>
+                                                            </tr>
+                                                        {%endfor%}
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-md-offset-1">
-                                            <div id="worldMap" class="map"></div>
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card card-chart">
-                                <div class="card-header" data-background-color="rose" data-header-animation="true">
-                                    <div class="ct-chart" id="websiteViewsChart"></div>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-actions">
-                                        <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                                            <i class="material-icons">build</i> Fix Header!
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                                            <i class="material-icons">refresh</i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                    </div>
-                                    <h4 class="card-title">Website Views</h4>
-                                    <p class="category">Last Campaign Performance</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card card-chart">
-                                <div class="card-header" data-background-color="green" data-header-animation="true">
-                                    <div class="ct-chart" id="dailySalesChart"></div>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-actions">
-                                        <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                                            <i class="material-icons">build</i> Fix Header!
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                                            <i class="material-icons">refresh</i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                    </div>
-                                    <h4 class="card-title">Daily Sales</h4>
-                                    <p class="category">
-                                        <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> updated 4 minutes ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card card-chart">
-                                <div class="card-header" data-background-color="blue" data-header-animation="true">
-                                    <div class="ct-chart" id="completedTasksChart"></div>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-actions">
-                                        <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                                            <i class="material-icons">build</i> Fix Header!
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
-                                            <i class="material-icons">refresh</i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                    </div>
-                                    <h4 class="card-title">Completed Tasks</h4>
-                                    <p class="category">Last Campaign Performance</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                    </div>
+                                  {%endif%}
+
                                 </div>
                             </div>
                         </div>

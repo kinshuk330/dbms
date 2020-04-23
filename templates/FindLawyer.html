@@ -140,11 +140,11 @@
                                   Hearing Time
                                                                    </a>
                             </li>                            
-                            <li>
-                                <a href="{{url_for('Appeal')}}" >
-                                  Appeal to Higher Court
+                             <li>
+                                <a href="{{url_for('Documents')}}" >
+                                  Upload Documents
                                                                    </a>
-                            </li>                           
+                            </li>                         
                              <li>
                                 <a href="{{url_for('Withdrawal')}}" >
                                   Withdrawal
@@ -157,7 +157,7 @@
                             </li>
                             
                         </ul>
-                        <form class="navbar-form navbar-right" role="search">
+                        <!-- <form class="navbar-form navbar-right" role="search">
                             <div class="form-group form-search is-empty">
                                 <input type="text" class="form-control" placeholder="Search">
                                 <span class="material-input"></span>
@@ -166,7 +166,7 @@
                                 <i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                             </button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </nav>
@@ -315,7 +315,7 @@
                                                             </td>
                                                               <td >
                                                                 {%if 'True'==lr.Status %}
-                                                                <input type="button" id={{lr.LawyerID}} value="Cancel Request">
+                                                                <input type="button" nethod ='post' id={{lr.LawyerID}} value="Cancel Request">
                                                                 {%else%}
 
                                                                 <input type="button" id={{lr.LawyerID}} value="Cancel Request" disabled>

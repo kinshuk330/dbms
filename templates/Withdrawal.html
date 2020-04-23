@@ -157,7 +157,7 @@
                             </li>
                             
                         </ul>
-                        <form class="navbar-form navbar-right" role="search">
+                        <!-- <form class="navbar-form navbar-right" role="search">
                             <div class="form-group form-search is-empty">
                                 <input type="text" class="form-control" placeholder="Search">
                                 <span class="material-input"></span>
@@ -166,7 +166,7 @@
                                 <i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                             </button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </nav>
@@ -179,104 +179,117 @@
                                     <i class="material-icons">language</i>
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="card-title">Global Pending Cases by Top Countries (in Lakhs)</h4>
+                                    <h4 class="card-title">
+                                    {%if Acases is defined%}
+                                    Active Cases currently involved in
+                                    {%else%}
+                                    No Active case currently involved in
+                                    {%endif%}
+                                    </h4>
+                                    {%if Acases is defined%}
+                                    
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-12">
                                             <div class="table-responsive table-sales">
                                                 <table class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/US.png">
-                                                                </div>
+                                                                CNR Number
                                                             </td>
-                                                            <td>USA</td>
-                                                            <td class="text-right">
-                                                                2.920
-                                                            </td>
-                                                            <td class="text-right">
-                                                                53.23%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/DE.png">
-                                                                </div>
+                                                                Filing Number
                                                             </td>
-                                                            <td>Germany</td>
-                                                            <td class="text-right">
-                                                                1.300
-                                                            </td>
-                                                            <td class="text-right">
-                                                                20.43%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/AU.png">
-                                                                </div>
+                                                                Filing Date
                                                             </td>
-                                                            <td>Australia</td>
-                                                            <td class="text-right">
-                                                                760
-                                                            </td>
-                                                            <td class="text-right">
-                                                                10.35%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/GB.png">
-                                                                </div>
+                                                                First Hearing
                                                             </td>
-                                                            <td>United Kingdom</td>
-                                                            <td class="text-right">
-                                                                690
-                                                            </td>
-                                                            <td class="text-right">
-                                                                7.87%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/RO.png">
-                                                                </div>
+                                                                Next Hearing
                                                             </td>
-                                                            <td>Romania</td>
-                                                            <td class="text-right">
-                                                                600
-                                                            </td>
-                                                            <td class="text-right">
-                                                                5.94%
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>
-                                                                <div class="flag">
-                                                                    <img src="/static/static2/assets/img/flags/BR.png">
-                                                                </div>
+                                                                Previous 
                                                             </td>
-                                                            <td>Brasil</td>
-                                                            <td class="text-right">
-                                                                550
+                                                            <td>
+                                                               Stage
                                                             </td>
-                                                            <td class="text-right">
-                                                                4.34%
+                                                            <td>
+                                                                Court Number
+                                                            </td>
+                                                            <td>
+                                                               Judge ID
+                                                            </td>
+                                                            <td>
+                                                                Victim ID
+                                                            </td>
+                                                            <td>
+                                                               Victim Statement
+                                                            </td>
+                                                            <td>
+                                                               Accused ID
+                                                            </td>
+                                                            <td>
+                                                               Accused Statement
+                                                            </td>
+                                                            <td>
+                                                                Acts
                                                             </td>
                                                         </tr>
+                                                        {% for case in Acases %}
+                                                            <tr>
+                                                                <td>
+                                                                    {{case.CNRno}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.FilingNo}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.FilingDate}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.FirstHearing}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.NextHearing}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.PrevHearing}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Stage}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.CourtNo}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.JudgeID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.VictimID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.VictimStmnt}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.AccusedID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.AccusedStmnt}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Acts}}
+                                                                </td>
+                                                            </tr>
+                                                        {%endfor%}
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-md-offset-1">
-                                            <div id="worldMap" class="map"></div>
-                                        </div>
                                     </div>
+                                    {%endif%}
+
                                 </div>
                             </div>
                         </div>

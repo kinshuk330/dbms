@@ -120,7 +120,8 @@ def FindFirm():
 
 @app.route('/CheckStatus')
 def CheckStatus():
-	#Cases to be added as argument
+	#Acases to be added as argument for active cases
+	#Pcases to be added as argument for pending cases
 	return render_template('Checkstatus.html',di=di)
 
 
@@ -129,12 +130,14 @@ def HearingTime():
 		return render_template('Hearingtime.html',di=di)
 
 
-@app.route('/Appeal')
-def Appeal():
-		return render_template('Appeal.html',di=di)
+@app.route('/Documents')
+def Documents():
+		return render_template('Documents.html',di=di)
 
 @app.route('/Withdrawal')
 def Withdrawal():
+	#change the victim statement to withdrawal requested and then judge would see it and then only transfer it.
+
 		return render_template('Withdrawal.html',di=di)
 
 
