@@ -153,15 +153,13 @@ def ClientRequests():
 @app.route('/ActivePending')
 def ActivePending():
 		global di 
-		#lawyerrequests need to be passed
-		active=[]
-		pending=[]
+		active=[]	#List of jsons containing all columns from table ActiveCases
+		pending=[]	#List of jsons containing all columns from table PendingCases
 		return render_template('ActivePending.html',di=di,active=active,pending=pending)
 
 @app.route('/Schedule')
 def Schedule():
-	#Cases to be added as argument
-	schedule=[] # all cols of active cases
+	schedule=[] #List of jsons containing all cols of active cases
 	return render_template('Schedule.html',di=di,schedule=schedule)
 
 
@@ -169,6 +167,13 @@ def Schedule():
 def RequestPayment():
 	if request.method == "POST":
 		pass	#Process the payment entry to add to the table
+	"""
+	LawyerID
+	ClientID
+	CNRno
+	Side
+	Fee
+	"""
 	return render_template('RequestPayment.html',di=di)
 
 if __name__ == '__main__':
