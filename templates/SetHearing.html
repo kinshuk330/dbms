@@ -47,7 +47,7 @@
 </head>
 
 <body>
-	{%if 'lawyer'==di['mode'] %}
+	{%if 'officer'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -120,36 +120,30 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('ClientRequests')}}" >
-                                  Client Requests
-                                                                   </a>
-                            </li>
-                            <li >
-                                <a  href="{{url_for('FileCase')}}" >
-                                  File A Case
+                                <a  href="{{url_for('FileFIR')}}" >
+                                  File FIR
                                                                    </a>
                             </li>
                              <li >
-                                <a  href="{{url_for('ActivePending')}}" >
-                                  Active/Pending Cases
+                                <a  href="{{url_for('SetHearing')}}" >
+                                  Set Hearing
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('Schedule')}}" >
+                                <a href="{{url_for('ScheduleOfficer')}}" >
                                   Schedule For The Day
                                                                    </a>
                             </li>                            
                             <li>
-                                <a href="{{url_for('CaseHistory')}}" >
-                                  Check Case History
+                                <a href="{{url_for('DocUploadStatus')}}" >
+                                  Document Upload Status
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('RequestPayment')}}" >
-                                  Request Payement
+                                <a href="{{url_for('VerifyUploadedDocs')}}" >
+                                  Verify Uploaded Documents
                                                                    </a>
-                            </li>
-                            
+                            </li>                            
                         </ul>
                     </div>
                 </div>
@@ -163,16 +157,13 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-content">
-                                    <h4 class="card-title">File A Case: Fill In The Details</h4>
+                                    <h4 class="card-title">Set A Hearing: Fill In The Details</h4>
                                     <div class="row">
-                                        <form id="TypeValidation" class="form-horizontal" action="/FileCase" method="POST">
-                                
-                                            
-                                            
+                                        <form id="TypeValidation" class="form-horizontal" action="/SetHearing" method="POST">
                                             <div class="col-sm-8">
                                                 <div class="row"> 
                                                     <div class="form-group label-floating">    
-                                                        <input class="form-control" type="text" placeholder="Enter Victim ID" name="VictimID">
+                                                        <input class="form-control" type="date" placeholder="Enter Next Data" name="Date">
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +171,7 @@
                                             <div class="col-sm-8">
                                                 <div class="row"> 
                                                     <div class="form-group label-floating">    
-                                                        <input class="form-control" type="text" placeholder="Enter Victim Lawyer ID" name="Victim_LawyerID">
+                                                        <input class="form-control" type="text" placeholder="Enter CNR Number" name="CNRno">
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,7 +179,7 @@
                                             <div class="col-sm-8">
                                                 <div class="row"> 
                                                     <div class="form-group label-floating">    
-                                                        <input class="form-control" type="text" placeholder="Enter Accused ID" name="AccusedID">
+                                                        <input class="form-control" type="date" placeholder="Enter Previous Date" name="PrevDate">
                                                     </div>
                                                 </div>
                                             </div>
@@ -196,54 +187,11 @@
                                             <div class="col-sm-8">
                                                 <div class="row"> 
                                                     <div class="form-group label-floating">    
-                                                        <input class="form-control" type="text" placeholder="Enter Accused Lawyer ID" name="Accused_LawyerID">
+                                                        <input class="form-control" type="text" placeholder="Enter Purpose (in brief)" name="Purpose">
                                                     </div>
                                                 </div>
                                             </div>
                                             
-                                            <div class="col-sm-8">
-                                                <div class="row"> 
-                                                    <div class="form-group label-floating">  
-                                                        <input class="form-control" type="text" placeholder="FIR No" name="FIRno">                                                       
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <div class="togglebutton">
-                                                    <label>
-                                                        <input type="checkbox" name="Type"> Civil | Criminal
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="togglebutton">
-                                                    <label>
-                                                        <input type="checkbox" name="Doc_Uploaded_Victim"> Docs Uploaded by Victim?
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="togglebutton">
-                                                    <label>
-                                                        <input type="checkbox" name="Doc_Uploaded_Accused"> Docs Uploaded by Accused?
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="togglebutton">
-                                                    <label>
-                                                        <input type="checkbox" name="isVerified"> Docs Verified?
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            
-
                                             <div class="col-sm-8">
                                                 <div class="row">
                                                     <button type="submit" class="btn btn-rose btn-fill">Submit</button>

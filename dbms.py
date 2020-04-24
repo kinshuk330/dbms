@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 import Home
 import os
 USERNAME=""
-di={"mode":"lawyer","username":"dushyant"}
+di={"mode":"officer","username":"dushyant"}
 app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
@@ -107,69 +107,48 @@ def Home():
 
 # Lawyer Routes
 
-@app.route('/FileCase',methods=["GET","POST"])
-def FileCase():
+@app.route('/FileFIR',methods=["GET","POST"])
+def FileFIR():
 	global di
 	if request.method=="POST":
 		pass 	#Read data here using request.form.get('name of entry')
-	"""	
-	Generate filing no. and filing date automatically
-		VictimID
-		Victim_LawyerID
-		AccusedID
-		Accused_LawyerID
-		Civil/Criminal (radio buttons)
-		FIRno
-		Doc_Uploaded_Victim
-		Doc_Uploaded_Accused
-		is_Verified
+	"""	FIRno
+		FilingNo
+		InspectorName
+		Description
 	"""
+	return render_template('FileFIR.html',di=di)
 
-	return render_template('FileCase.html',di=di)
-
-
-@app.route('/CaseHistory',methods=["GET","POST"])
-def CaseHistory():
-	hrs="" # [{"Date":"12345", "CNRno":'54321', "Prev_Date":'24141',"Purpose":'Just for fun'}]
+@app.route('/SetHearing',methods=["GET","POST"])
+def SetHearing():
+	global di
 	if request.method=="POST":
-		cnr = request.form.get('CNRno')
-		# process find hearings using cnrNn and put into hrs.
-	return render_template('CaseHistory.html',di=di,hearings=hrs)
-
-@app.route('/ClientRequests')
-def ClientRequests():
-		global di 
-		#lawyerrequests need to be passed
-		clientList=[{"ID":123, "Name":"helloworld123", "DOB":"11-11-1111"}]
-		newClientsList=[{"ID":12345, "Name":"helloworld321", "DOB":"11-11-2000"}]
-		
-		# print(request.args)
-		# <a href="/ClientRequests?accept&{{cl}}" class="btn btn-success">Accept</a>
-		# <a href="/ClientRequests?reject&{{cl}}" class="btn btn-danger">Reject</a>
-
-		return render_template('ClientRequests.html',di=di, clients=clientList, clientRequests=newClientsList)
+		pass 	#Read data here using request.form.get('name of entry')
+	"""	Date
+		CNRno
+		Prev_Date
+		Purpose
+	"""
+	return render_template('SetHearing.html',di=di)
 
 
-@app.route('/ActivePending')
-def ActivePending():
-		global di 
-		#lawyerrequests need to be passed
-		active=[]
-		pending=[]
-		return render_template('ActivePending.html',di=di,active=active,pending=pending)
-
-@app.route('/Schedule')
-def Schedule():
-	#Cases to be added as argument
+@app.route('/ScheduleOfficer')
+def ScheduleOfficer():
+	global di
 	schedule=[] # all cols of active cases
-	return render_template('Schedule.html',di=di,schedule=schedule)
+	return render_template('ScheduleOfficer.html',di=di,schedule=schedule)
 
 
-@app.route('/RequestPayment', methods=["POST","GET"])
-def RequestPayment():
-	if request.method == "POST":
-		pass	#Process the payment entry to add to the table
-	return render_template('RequestPayment.html',di=di)
+@app.route('/DocUploadStatus')
+def DocUploadStatus():
+	global di
+	return render_template('DocUploadStatus.html', di=di)
+
+@app.route('/VerifyUploadedDocs')
+def VerifyUploadedDocs():
+	global di
+	return render_template('VerifyUploadedDocs.html', di=di)
+
 
 if __name__ == '__main__':
 	app.run(debug=True)

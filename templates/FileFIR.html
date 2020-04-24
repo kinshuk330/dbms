@@ -47,7 +47,7 @@
 </head>
 
 <body>
-	{%if 'lawyer'==di['mode'] %}
+	{%if 'officer'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -120,36 +120,30 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('ClientRequests')}}" >
-                                  Client Requests
-                                                                   </a>
-                            </li>
-                            <li >
-                                <a  href="{{url_for('FileCase')}}" >
-                                  File A Case
+                                <a  href="{{url_for('FileFIR')}}" >
+                                  File FIR
                                                                    </a>
                             </li>
                              <li >
-                                <a  href="{{url_for('ActivePending')}}" >
-                                  Active/Pending Cases
+                                <a  href="{{url_for('SetHearing')}}" >
+                                  Set Hearing
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('Schedule')}}" >
+                                <a href="{{url_for('ScheduleOfficer')}}" >
                                   Schedule For The Day
                                                                    </a>
                             </li>                            
                             <li>
-                                <a href="{{url_for('CaseHistory')}}" >
-                                  Check Case History
+                                <a href="{{url_for('DocUploadStatus')}}" >
+                                  Document Upload Status
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('RequestPayment')}}" >
-                                  Request Payement
+                                <a href="{{url_for('VerifyUploadedDocs')}}" >
+                                  Verify Uploaded Documents
                                                                    </a>
-                            </li>
-                            
+                            </li>                            
                         </ul>
                     </div>
                 </div>
@@ -158,76 +152,63 @@
             
             <div class="content">
                 <div class="container-fluid">
-                 {%if schedule==[] %}
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 <div class="card-content">
-                                     <h4 class="card-title">Nothing to do today. Have Fun !</h4>
-                                 </div>
-                             </div>
-                         </div>
-                 </div>
-                 {%else%}
-                 <div class="row">
-                         <div class="col-md-12">
-                             <div class="card">
-                                 
-                                 <div class="card-content">
-                                     <h4 class="card-title">Schedule for Today</h4>
-                                     <div class="row">
-                                         <div class="col-md-10">
-                                             <div class="table-responsive table-sales">
-                                                 <table class="table">
-                                                     <tbody class="text-center">
-                                                        <tr>
-                                                            <td>CNR No.</td>
-                                                            <td>Filing No.</td>
-                                                            <td>Filing Date</td>
-                                                            <td>First Hearing</td>
-                                                            <td>Next Hearing</td>
-                                                            <td>Prev Hearing</td>
-                                                            <td>Stage</td>
-                                                            <td>Court No</td>
-                                                            <td>Judge ID</td>
-                                                            <td>Victim ID</td>
-                                                            <td>Victim Statement</td>
-                                                            <td>Accused ID</td>
-                                                            <td>Accused Statement</td>
-                                                            <td>Acts</td>
-                                                         </tr>
-                                                         {% for case in schedule %}
-                                                         <tr>
-                                                            <td>{{case.CNRno}}</td>
-                                                            <td>{{case.FilingNo}}</td>
-                                                            <td>{{case.FilingDate}}</td>
-                                                            <td>{{case.FirstHearing}}</td>
-                                                            <td>{{case.NextHearing}}</td>
-                                                            <td>{{case.PrevHearing}}</td>
-                                                            <td>{{case.Stage}}</td>
-                                                            <td>{{case.CourtNo}}</td>
-                                                            <td>{{case.JudgeID}}</td>
-                                                            <td>{{case.VictimID}}</td>
-                                                            <td>{{case.VictimStmnt}}</td>
-                                                            <td>{{case.AccusedID}}</td>
-                                                            <td>{{case.AccusedStmnt}}</td>
-                                                            <td>{{case.Acts}}</td>
-                                                         </tr>
-                                                         {% endfor %}
-                                                     </tbody>
-                                                 </table>
-                                             </div>
-                                         </div>
  
-                                         <div class="col-md-6 col-md-offset-1">
-                                             <!-- <div id="worldMap" class="map"></div> -->
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     {%endif%}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="card-title">File An FIR: Fill In The Details</h4>
+                                    <div class="row">
+                                        <form id="TypeValidation" class="form-horizontal" action="/FileFIR" method="POST">
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter FIR Number" name="FIRno">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter Filing Number" name="FilingNo">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter Inspector Name" name="InspectorName">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="row"> 
+                                                    <div class="form-group label-floating">    
+                                                        <input class="form-control" type="text" placeholder="Enter Description" name="Description">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-8">
+                                                <div class="row">
+                                                    <button type="submit" class="btn btn-rose btn-fill">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+                     
+ 
+                 
                 
                 
 
