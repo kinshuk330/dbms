@@ -47,7 +47,7 @@
 </head>
 
 <body>
-        {%if 'client'==di['mode'] %}
+        {%if 'judge'==di['mode'] %}
 
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <ul class="nav">
-                    <li>
+                	<li>
                         <a href="#">My Profile</a>
                     </li>
                     <li>
@@ -119,41 +119,41 @@
                         <a class="navbar-brand" href="{{url_for('Home')}}"> Dashboard </a>
                     </div>
                     <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="{{url_for('FindLawyer')}}" >
-                                  Find a Lawyer
-                                                                   </a>
-                            </li>
+                       <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('FindFirm')}}" >
-                                  Firm Requests
+                                <a  href="{{url_for('PreviousJudgements')}}" >
+                                  Previous Judgements
+                                                                   </a>
+                            </li>
+                             <li >
+                                <a  href="{{url_for('JudgeSchedule')}}" >
+                                  Schedule 
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('CheckStatus')}}" >
-                                  Check Status
+                                <a href="{{url_for('TrackLawyer')}}" >
+                                    Records
                                                                    </a>
                             </li>                            
-                            <li>
-                                <a href="{{url_for('HearingTime')}}" >
-                                  Hearing Time
-                                                                   </a>
-                            </li>                            
-                             <li>
-                                <a href="{{url_for('Documents')}}" >
-                                  Upload Documents
-                                                                   </a>
-                            </li>                         
+                                                    
+                                                    
                             
                              <li>
-                                <a href="{{url_for('Payment')}}" >
-                                  Make Payement
-                                                                   </a>
+                                <a href="{{url_for('Setnexthearing')}}" >
+                            Set the date for next hearing
+                                                                 </a>
+                            </li>
+                            
+                            <li>
+                                <a href="{{url_for('Cases')}}" >
+
+                                
+                                View Active/Pending Cases                                                                  
+                                 </a>
                             </li>
                             
                         </ul>
-                        <!-- <form class="navbar-form navbar-right" role="search">
+                         <!-- <form class="navbar-form navbar-right" role="search">
                             <div class="form-group form-search is-empty">
                                 <input type="text" class="form-control" placeholder="Search">
                                 <span class="material-input"></span>
@@ -167,313 +167,320 @@
                 </div>
             </nav>
             <div class="content">
-               <div class="container-fluid">
-                {%if Lawyercurrent is not defined %}
-                <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-content">
-                                    <h4 class="card-title">No Current Lawyers </h4>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                {%else%}
-
-                <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                
-                                <div class="card-content">
-                                    <h4 class="card-title">Current Lawyers</h4>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <div class="table-responsive table-sales">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                           
-                                                            <td>Lawyer ID</td>
-                                                            <td >
-                                                                CNRno
-                                                            </td>
-                                                            <td >
-                                                                Side
-                                                            </td>
-                                                             <td >
-                                                                Fee
-                                                            </td>
-                                                            <td >
-                                                                Paid
-                                                            </td>
-                                                            <td >
-                                                                Requested
-                                                            </td>
-                                                            <td >
-                                                                Date paid
-                                                            </td>
-                                                        </tr>
-                                                        {% for lr in Lawyercurrent %}
-                                                        <tr>
-                                                            <td>lr.LawyerID</td>
-                                                            <td >
-                                                                lr.CNRno
-                                                            </td>
-                                                            <td >
-                                                                lr.Side
-                                                            </td>
-                                                             <td >
-                                                                lr.Fee
-                                                            </td>
-                                                            <td >
-                                                                lr.Paid
-                                                            </td>
-                                                            <td >
-                                                                lr.Requested
-                                                            </td>
-                                                            <td >
-                                                                lr.Date paid
-                                                            </td>
-                                                        </tr>
-                                                        {%endfor%}
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-md-offset-1">
-                                            <!-- <div id="worldMap" class="map"></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {%endif%}
-                     {%if Lawyerrequest is not defined %}
-                <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-content">
-                                    <h4 class="card-title">No Current Lawyers Requested Currenlty </h4>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                {%else%}
-
-                <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                
-                                <div class="card-content">
-                                    <h4 class="card-title">Lawyers Currently Requested</h4>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <div class="table-responsive table-sales">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                           
-                                                            <td>Lawyer ID</td>
-                                                            <td >
-                                                                Client Note
-                                                            </td>
-                                                            <td >
-                                                                Filling Number
-                                                            </td>
-                                                             <td >
-                                                                Quotation
-                                                            </td>
-                                                            <td >
-                                                                Status
-                                                            </td>
-                                                            <td >
-                                                                Requested
-                                                            </td>
-                                                            
-                                                        </tr>
-                                                        {% for lr in Lawyerrequest %}
-                                                        <tr>
-                                                            <td>lr.LawyerID</td>
-                                                            <td >
-                                                                lr.Client_Note
-                                                            </td>
-                                                            <td >
-                                                                lr.FillingNo
-                                                            </td>
-                                                             <td >
-                                                                lr.Quotation
-                                                            </td>
-                                                            <td >
-                                                                lr.Status
-                                                            </td>
-                                                              <td >
-                                                                {%if 'True'==lr.Status %}
-                                                                <input type="button" nethod ='post' id={{lr.LawyerID}} value="Cancel Request">
-                                                                {%else%}
-
-                                                                <input type="button" id={{lr.LawyerID}} value="Cancel Request" disabled>
-                                                                {%endif%}
-                                                            </td>
-                                                        </tr>
-                                                        {%endfor%}
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-md-offset-1">
-                                            <!-- <div id="worldMap" class="map"></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {%endif%}
-                    {%if LawyerSearch is defined %}
-
-                <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                
-                                <div class="card-content">
-                                    <h4 class="card-title">Search Results</h4>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <div class="table-responsive table-sales">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                           
-                                                            <td>Lawyer ID</td>
-                                                            <td >
-                                                                Client Note
-                                                            </td>
-                                                            <td >
-                                                                Filling Number
-                                                            </td>
-                                                             <td >
-                                                                Quotation
-                                                            </td>
-                                                            <td >
-                                                                Status
-                                                            </td>
-                                                            <td >
-                                                                Requested
-                                                            </td>
-                                                            
-                                                        </tr>
-                                                        {% for lr in LawyerSearch %}
-                                                        <tr>
-                                                            <td>lr.LawyerID</td>
-                                                            <td >
-                                                                lr.Client_Note
-                                                            </td>
-                                                            <td >
-                                                                lr.FillingNo
-                                                            </td>
-                                                             <td >
-                                                                lr.Quotation
-                                                            </td>
-                                                            <td >
-                                                                lr.Status
-                                                            </td>
-                                                              <td >
-                                                                {%if 'True'==lr.Status %}
-                                                                <input type="button" id={{lr.LawyerID}} value="Cancel Request">
-                                                                {%else%}
-
-                                                                <input type="button" id={{lr.LawyerID}} value="Cancel Request" disabled>
-                                                                {%endif%}
-                                                            </td>
-                                                        </tr>
-                                                        {%endfor%}
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-md-offset-1">
-                                            <!-- <div id="worldMap" class="map"></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {%endif%}
-               
-               
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                
                                 <div class="card-content">
-                                    <h4 class="card-title">Search for Lawyers</h4>
-                                    <div class="row">
-                                         <form id="TypeValidation" class="form-horizontal" action="#" method="">
-                                
-                                        <div class="col-md-6">
-                                            </div>
-                                        </div>
-                                        <div class="togglebutton">
-                                                <label>
-                                                    <input type="checkbox" name="civil" checked> Cvil
-                                                </label>
-                                            </div>
-                                            <div class="togglebutton">
-                                                <label>
-                                                    <input type="checkbox" name="criminal" checked> criminal
-                                                </label>
-                                            </div>
-                                        <div class="col-sm-8">
-                                            <div class="row"> 
-                                                <div class="form-group label-floating">
-                                                        <label class="control-label">Lawyer Name</label>
-                                                        <input class="form-control" type="text" name="email" email="true" />
-                                                    </div>
-                                                </div>
-                                        </div>
-                                      <div class="col-sm-8">
-                                    <div class="row">
-                                                                                  
-                                      <div class="col-sm-4">
-                                         <div class="form-group label-floating">
-                                                    <label class="control-label">Range</label>
-                                                    <input class="form-control" type="text" name="email" email="true" />
-                                                </div>
-                                            </div>
-                                        
-                                        <div class="col-sm-4">
-                                      
-
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Range</label>
-                                                    <input class="form-control" type="text" name="email" email="true" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                          
-                                    </div>
-                                    <div class="col-sm-8">
-
-                                        <div class="row">
-
+                                    <h4 class="card-title">
+                                    {%if Acases is defined%}
+                                    Active Cases currently involved in
+                                    {%else%}
+                                    No Active case currently involved in
+                                    {%endif%}
+                                	</h4>
+                                    {%if Acases is defined%}
                                     
-                                        <button type="submit" class="btn btn-rose btn-fill">Search for Lawyers</button>
-                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive table-sales">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                CNR Number
+                                                            </td>
+                                                            <td>
+                                                                Filing Number
+                                                            </td>
+                                                            <td>
+                                                                Filing Date
+                                                            </td>
+                                                            <td>
+                                                                First Hearing
+                                                            </td>
+                                                            <td>
+                                                                Next Hearing
+                                                            </td>
+                                                            <td>
+                                                                Previous 
+                                                            </td>
+                                                            <td>
+                                                               Stage
+                                                            </td>
+                                                            <td>
+                                                                Court Number
+                                                            </td>
+                                                            <td>
+                                                               Judge ID
+                                                            </td>
+                                                            <td>
+                                                                Victim ID
+                                                            </td>
+                                                            <td>
+                                                               Victim Statement
+                                                            </td>
+                                                            <td>
+                                                               Accused ID
+                                                            </td>
+                                                            <td>
+                                                               Accused Statement
+                                                            </td>
+                                                            <td>
+                                                                Acts
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    	{% for case in Acases %}
+	                                                        <tr>
+	                                                        	<td>
+	                                                        		{{case.CNRno}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.FilingNo}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.FilingDate}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.FirstHearing}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.NextHearing}}
+	                                                        	</td>
+																<td>
+	                                                        		{{case.PrevHearing}}
+	                                                        	</td>
+																<td>
+	                                                        		{{case.Stage}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.CourtNo}}
+	                                                        	</td>
+																<td>
+	                                                        		{{case.JudgeID}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.VictimID}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.VictimStmnt}}
+	                                                        	</td>
+																<td>
+	                                                        		{{case.AccusedID}}
+	                                                        	</td>
+	                                                        	<td>
+	                                                        		{{case.AccusedStmnt}}
+	                                                        	</td>
+																<td>
+	                                                        		{{case.Acts}}
+	                                                        	</td>
+                                                               
+	                                                        </tr>
+	                                                    {%endfor%}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                </form>
+                                    {%endif%}
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                    {%if Pcases is defined%}
+                                    Pending Cases :
+                                    {%else%}
+                                    No Pending case available 
+                                    {%endif%}
+                                    </h4>
+                                    {%if Pcases is defined%}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive table-sales">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                Filing Number
+                                                            </td>
+                                                            <td>
+                                                                Filing Date
+                                                            </td>
+                                                           <td>
+                                                                Victim ID
+                                                            </td>
+                                                            <td>
+                                                                Victim Lawyer ID
+                                                            </td>
+                                                            <td>
+                                                                Accused ID
+                                                            </td>
+                                                            <td>
+                                                                Accused Lawyer ID
+                                                            </td>
+                                                            <td>
+                                                                Type
+                                                            </td>
+                                                            <td>
+                                                                FIR Number
+                                                            </td>
+                                                            <td>
+                                                                Document Uploaded by Victim
+                                                            </td>
+                                                            <td>
+                                                                Document Uploaded by Accused
+                                                            </td>
+                                                            <td>
+                                                                Document Verified
+                                                            </td>
+                                                           
+                                                        </tr>    
+                                                        {% for case in Pcases %}
+                                                            <tr>
+                                                                <td>
+                                                                    {{case.FilingNo}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.FilingDate}}
+                                                                </td>
+                                                               <td>
+                                                                    {{case.VictimID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Victim_LawyerID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.AccusedID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Accused_LawyerID}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Type}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.FIRno}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Doc_Uploaded_Victim}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.Doc_Uploaded_Accused}}
+                                                                </td>
+                                                                <td>
+                                                                    {{case.isVerified}}
+                                                                </td>
+                                                                <td>
+                                                                    <a href="" class="btn btn-success">Approve</a>
+                                                                    <a href="" class="btn btn-danger">Reject</a>
+                                                                </td>
+                                                            </tr>
+                                                        {%endfor%}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    {%endif%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card card-chart">
+                                <div class="card-header" data-background-color="rose" data-header-animation="true">
+                                    <div class="ct-chart" id="websiteViewsChart"></div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-actions">
+                                        <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                                            <i class="material-icons">build</i> Fix Header!
+                                        </button>
+                                        <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
+                                            <i class="material-icons">refresh</i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                    </div>
+                                    <h4 class="card-title">Website Views</h4>
+                                    <p class="category">Last Campaign Performance</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-chart">
+                                <div class="card-header" data-background-color="green" data-header-animation="true">
+                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-actions">
+                                        <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                                            <i class="material-icons">build</i> Fix Header!
+                                        </button>
+                                        <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
+                                            <i class="material-icons">refresh</i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                    </div>
+                                    <h4 class="card-title">Daily Sales</h4>
+                                    <p class="category">
+                                        <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">access_time</i> updated 4 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-chart">
+                                <div class="card-header" data-background-color="blue" data-header-animation="true">
+                                    <div class="ct-chart" id="completedTasksChart"></div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-actions">
+                                        <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                                            <i class="material-icons">build</i> Fix Header!
+                                        </button>
+                                        <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
+                                            <i class="material-icons">refresh</i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                    </div>
+                                    <h4 class="card-title">Completed Tasks</h4>
+                                    <p class="category">Last Campaign Performance</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     
             <footer class="footer">
                 <div class="container-fluid">
@@ -512,7 +519,7 @@
             </footer>
         </div>
     </div>
-     <div class="fixed-plugin">
+    <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>

@@ -47,8 +47,7 @@
 </head>
 
 <body>
-        {%if 'client'==di['mode'] %}
-
+	{%if 'judge'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -87,7 +86,7 @@
                     </div>
                 </div>
                 <ul class="nav">
-                    <li>
+                	<li>
                         <a href="#">My Profile</a>
                     </li>
                     <li>
@@ -121,48 +120,39 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('FindLawyer')}}" >
-                                  Lawyer Requests
+                                <a  href="{{url_for('PreviousJudgements')}}" >
+                                  Previous Judgements
                                                                    </a>
                             </li>
                              <li >
-                                <a  href="{{url_for('FindFirm')}}" >
-                                  Firm Requests
+                                <a  href="{{url_for('JudgeSchedule')}}" >
+                                  Schedule 
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('CheckStatus')}}" >
-                                  Check Status
+                                <a href="{{url_for('Records')}}" >
+                                  	Records
                                                                    </a>
                             </li>                            
-                            <li>
-                                <a href="{{url_for('HearingTime')}}" >
-                                  Hearing Time
-                                                                   </a>
-                            </li>                            
-                            <li>
-                                <a href="{{url_for('Documents')}}" >
-                                  Upload Documents
-                                                                   </a>
-                            </li>                           
-                           
+                                                    
+                                                    
+                            
                              <li>
-                                <a href="{{url_for('Payment')}}" >
-                                  Make Payement
-                                                                   </a>
+                                <a href="{{url_for('Setnexthearing')}}" >
+							Set the date for next hearing
+                                                                 </a>
+                            </li>
+                         
+                            <li>
+                                <a href="{{url_for('Cases')}}" >
+
+								
+								View Active/Pending Cases                                                                  
+								 </a>
                             </li>
                             
                         </ul>
-                       <!--  <form class="navbar-form navbar-right" role="search">
-                            <div class="form-group form-search is-empty">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <span class="material-input"></span>
-                            </div>
-                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons">search</i>
-                                <div class="ripple-container"></div>
-                            </button>
-                        </form> -->
+                        
                     </div>
                 </div>
             </nav>
@@ -171,67 +161,60 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                
+                              
                                 <div class="card-content">
-                                    <h4 class="card-title">Upload Documents</h4>
-                                   
+                                    <h4 class="card-title">Search for Details</h4>
                                     <div class="row">
-                                         <form id="TypeValidation" class="form-horizontal" action="#" method="">
+                                         <form id="TypeValidation" class="form-horizontal" action="#" method="Post">
                                 
                                         <div class="col-md-6">
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-sm-8">
+                                        <div class="form-check form-check-radio">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="Option" id="exampleRadios1" value="Lawyer"checked >
+                                            Search Lawyer ID
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                     <div class="form-check form-check-radio">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="Option" id="exampleRadios1" value="Civilians" >
+                                            Search Civilians ID
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                        <div class="col-sm-5">
                                             <div class="row"> 
                                                 <div class="form-group label-floating">
-                                                        <label class="control-label">Pending Case Filing Number</label>
-                                                        <input class="form-control" type="text" name="email" email="true" />
+                                                        <label class="control-label">Enter ID</label>
+                                                        <input class="form-control" type="text" name="Details"/>
                                                     </div>
                                                 </div>
                                         </div>
-                                      <div class="col-sm-8">
-                                    <div class="row">
-                                                                                  
-                                      <div class="col-sm-4">
-                                         <div class="form-group label-floating">
-                                                    
-                                                    <input class="form-control" type="disabled" placeholder="Doc ID:{{Docid}}" readonly>
-                                                </div>
-                                            </div>
-                                        
-                                        <div class="col-sm-4">
-                                            <div class="form-group form-file-upload form-file-multiple">
-                                                <input type="file" multiple="" class="inputFileHidden" style="display">
-                                                <div class="input-group">
-<!--                                                     <input type="text" class="form-control inputFileVisible" >
- -->                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-fab btn-round btn-primary">
-                                                            <i class="material-icons">attach_file</i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                              </div>       
-                                            </div>
-                                        </div>
-                                          
-                                    </div>
+                                      
                                     <div class="col-sm-8">
 
                                         <div class="row">
 
                                     
-                                        <button type="submit" class="btn btn-rose btn-fill">Upload Document file</button>
+                                        <button type="submit" class="btn btn-rose btn-fill">Search </button>
                                     
                                     </div>
                                 </div>
                                 </form>
                                 </div>
+                            </div></div>
                             </div>
                         </div>
-                    
+                    </div>
 
                     <div class="row">
+
                         <div class="col-md-4">
                             <div class="card card-chart">
                                 <div class="card-header" data-background-color="rose" data-header-animation="true">

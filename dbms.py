@@ -3,7 +3,8 @@ from flask_bootstrap import Bootstrap
 import Home
 import os
 USERNAME=""
-di={"mode":"client","username":"kinshuk"}
+di={"mode":"judge","username":"kinshuk"}
+civilian={"id":"19999","name":"kinshuk","dob":"30-30-30"}
 app=Flask(__name__,static_folder='static')
 
 Bootstrap(app)
@@ -103,49 +104,89 @@ def Home():
 	# elif request.form['submit'] == 'judges':
 	# 	return redirect(url_for('index'))
 	 
+#judges Routes
 
-
-@app.route('/FindLawyer')
-def FindLawyer():
+@app.route('/JudgePreviousJudgements',methods=['GET','POST'])
+def PreviousJudgements():
 		global di 
 		#lawyerrequests need to be passed
-		return render_template('FindLawyer.html',di=di)
+		if request.method=='POST':
+			result=request.form
+			print(result.items())
+			option=request.form.get('Option')
+			details=request.form.get('Details')
+			print(option)
+			print('hello')
+			redirect(url_for('Result'))
+			return render_template('result.html',di=di)
+		return render_template('PreviousJudgements.html',di=di)
 
 
-@app.route('/FindFirm')
-def FindFirm():
+@app.route('/JudgeSchedule')
+def JudgeSchedule():
 		global di 
 		#lawyerrequests need to be passed
-		return render_template('FindFirm.html',di=di)
+		return render_template('JudgeSchedule.html',di=di)
 
-@app.route('/CheckStatus')
-def CheckStatus():
+@app.route('/TrackLawyer')
+def TrackLawyer():
 	#Acases to be added as argument for active cases
 	#Pcases to be added as argument for pending cases
-	return render_template('Checkstatus.html',di=di)
+	return render_template('TrackLawyer.html',di=di)
+
+@app.route('/Records',methods=['GET','POST'])
+def Records():
+	if request.method=='POST':
+			result=request.form
+			print(result.items())
+			option=request.form.get('Option')
+			details=request.form.get('Details')
+			print(option)
+			print('hello')
+			redirect(url_for('Result'))
+			global civilia
+			return render_template('Track.html',di=di,civilian=civilian)
+
+	return render_template('Records.html',di=di)
 
 
-@app.route('/HearingTime')
-def HearingTime():
-		return render_template('Hearingtime.html',di=di)
+@app.route('/Track')
+def Track():
+		return render_template('Track.html',di=di)
 
 
-@app.route('/Documents')
-def Documents():
-		return render_template('Documents.html',di=di)
+@app.route('/FinalVerdict')
+def FinalVerdict():
+		return render_template('FinalVerdict.html',di=di)
 
-@app.route('/Withdrawal')
-def Withdrawal():
+@app.route('/Setnexthearing')
+def Setnexthearing():
+	#change the victim statement to withdrawal requested and then judge would see it and then only transfer it.
+	CASE=[{"CNRno":1111,"FilingDate":11111,"FirstHearing":2222,"NextHearing":3333,"PrevHearing":444,"Stage":5,"CourtNo":6,"VictimID":8,"VictimStmnt":"balnk","AccusedID":10,"AccusedStmnt":"killed","Acts":111}]
+	return render_template('nexthearing.html',di=di,Acases=CASE)
+
+@app.route('/ApproveCases')
+def ApproveCases():
 	#change the victim statement to withdrawal requested and then judge would see it and then only transfer it.
 
-		return render_template('Withdrawal.html',di=di)
+		return render_template('ApproveCases.html',di=di)
+
+@app.route('/Cases')
+def Cases():
+	#change the victim statement to withdrawal requested and then judge would see it and then only transfer it.
+
+		return render_template('Cases.html',di=di)
 
 
-@app.route('/Payment')
-def Payment():
-		return render_template('Payment.html',di=di)
+@app.route('/Result')
+def Result():
+	#change the victim statement to withdrawal requested and then judge would see it and then only transfer it.
+
+		return render_template('result.html',di=di)
+
+
+
 if __name__ == '__main__':
 	app.run(debug=True)
 
 
-	

@@ -47,7 +47,7 @@
 </head>
 
 <body>
-	{%if 'client'==di['mode'] %}
+	{%if 'judge'==di['mode'] %}
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/static/static2/assets/img/sidebar-1.jpg">
             <!--
@@ -120,35 +120,35 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a  href="{{url_for('FindLawyer')}}" >
-                                  Lawyer Requests
+                                <a  href="{{url_for('PreviousJudgements')}}" >
+                                  Previous Judgements
                                                                    </a>
                             </li>
                              <li >
-                                <a  href="{{url_for('FindFirm')}}" >
-                                  Firm Requests
+                                <a  href="{{url_for('JudgeSchedule')}}" >
+                                  Schedule 
                                                                    </a>
                             </li>
                              <li>
-                                <a href="{{url_for('CheckStatus')}}" >
-                                  Check Status
+                                <a href="{{url_for('Records')}}" >
+                                  	Records
                                                                    </a>
                             </li>                            
-                            <li>
-                                <a href="{{url_for('HearingTime')}}" >
-                                  Hearing Time
-                                                                   </a>
-                            </li>                            
-                            <li>
-                                <a href="{{url_for('Documents')}}" >
-                                  Upload Documents
-                                                                   </a>
-                            </li>                           
+                                                    
+                                                    
                             
                              <li>
-                                <a href="{{url_for('Payment')}}" >
-                                  Make Payement
-                                                                   </a>
+                                <a href="{{url_for('Setnexthearing')}}" >
+							Set the date for next hearing
+                                                                 </a>
+                            </li>
+                            
+                            <li>
+                                <a href="{{url_for('Cases')}}" >
+
+								
+								View Active/Pending Cases                                                                  
+								 </a>
                             </li>
                             
                         </ul>
