@@ -139,15 +139,26 @@ def ScheduleOfficer():
 	return render_template('ScheduleOfficer.html',di=di,schedule=schedule)
 
 
-@app.route('/DocUploadStatus')
+@app.route('/DocUploadStatus',methods=["GET","POST"])
 def DocUploadStatus():
 	global di
-	return render_template('DocUploadStatus.html', di=di)
+	if request.method=="POST":
+		DocID="empty"
+		pass 	#Read data here using request.form.get('name of entry')
+	"""DocID
+	"""
+	status="notverify"
+	DocID={"ClientID":"12233","FilingNo":300000,"Document":"33333333","DocID":1222}
+	return render_template('DocUploadStatus.html', di=di,DOCS=DocID,status=status)
 
 @app.route('/VerifyUploadedDocs')
 def VerifyUploadedDocs():
 	global di
 	return render_template('VerifyUploadedDocs.html', di=di)
+
+                                                             
+
+
 
 
 if __name__ == '__main__':
